@@ -33,7 +33,7 @@ router.post("/",
 router.post("/content-images",
     auth,
     blogContentUploads.fields([
-        { name: "image", maxCount: 1 }
+        { name: "blogContentImage", maxCount: 1 }
     ]),
     validateImagesFormat,
     convertContentImageToWebP,

@@ -31,7 +31,7 @@ type TBlogEditorProps = {
 
 const uploadImage = async (blobInfo: { blob: () => Blob; filename: () => string }) => {
     const formData = new FormData();
-    formData.append('image', blobInfo.blob(), blobInfo.filename());
+    formData.append('blogContentImage', blobInfo.blob(), blobInfo.filename());
 
     const res = await fetch('/api/admin/blog-content-images', { method: 'POST', body: formData });
     const json = await res.json().catch(() => ({}));

@@ -36,7 +36,7 @@ export const TestimonialService = {
                 throw new HttpError(400, "A company image is required for the testimonial");
             }
 
-            return await testimonialRepository.createTestimonial({
+            await testimonialRepository.createTestimonial({
                 ...data,
                 image
             })
@@ -52,7 +52,7 @@ export const TestimonialService = {
         testimonial.name = data.name
         testimonial.rating = data.rating
 
-        return await testimonial.save()
+        await testimonial.save()
     },
 
     async updateTestimonialImage(testimonial: TTestimonialDocument, files?: TMulterFiles) {
@@ -69,8 +69,6 @@ export const TestimonialService = {
             await testimonial.save()
 
             deleteImageFromDisk(oldImage)
-
-            return testimonial
         } catch (error) {
             deleteAllUploadedFiles(files);
             throw error

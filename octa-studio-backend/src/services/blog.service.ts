@@ -68,7 +68,7 @@ export const BlogService = {
                 throw new HttpError(400, "A featured image is required for the blog");
             }
 
-            return await blogRepository.createBlog({
+            await blogRepository.createBlog({
                 ...data,
                 slug,
                 image
@@ -105,11 +105,9 @@ export const BlogService = {
         blog.content = data.content
         blog.seo = data.seo
 
-        const saved = await blog.save()
+        await blog.save()
 
         deleteContentImages(removed)
-
-        return saved
     },
 
     async updateBlogImage(blog: TBlogDocument, files?: TMulterFiles) {
@@ -126,8 +124,6 @@ export const BlogService = {
             await blog.save()
 
             deleteFeaturedImage(oldImage)
-
-            return blog
         } catch (error) {
             deleteAllUploadedFiles(files);
             throw error
@@ -135,7 +131,7 @@ export const BlogService = {
     },
 
     uploadContentImage(files?: TMulterFiles) {
-        const file = files?.image?.[0]
+        const file = files?.blogContentImage?.[0]
 
         if (!file) {
             throw new HttpError(400, "An image is required");

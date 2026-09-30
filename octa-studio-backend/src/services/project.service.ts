@@ -53,7 +53,7 @@ export const ProjectService = {
             // Los videos son opcionales: sin campo, lista vacia.
             const videos = files?.projectVideos?.map(file => file.filename) ?? []
 
-            return await projectRepository.createProject({ ...data, slug, images, videos })
+            await projectRepository.createProject({ ...data, slug, images, videos })
 
         } catch (error) {
             deleteAllUploadedFiles(files);
@@ -78,7 +78,7 @@ export const ProjectService = {
         project.sector = data.sector
         project.seo = data.seo
 
-        return await project.save()
+        await project.save()
     },
 
     async updateProjectImages(project: TProjectDocument, files?: TMulterFiles) {
@@ -96,8 +96,6 @@ export const ProjectService = {
             await project.save()
 
             deleteImagesFromDisk(oldImages)
-
-            return project
         } catch (error) {
             deleteAllUploadedFiles(files);
             throw error
@@ -115,8 +113,6 @@ export const ProjectService = {
             await project.save()
 
             deleteVideosFromDisk(oldVideos)
-
-            return project
         } catch (error) {
             deleteAllUploadedFiles(files);
             throw error
