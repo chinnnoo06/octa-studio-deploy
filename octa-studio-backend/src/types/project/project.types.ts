@@ -1,4 +1,4 @@
-import { HydratedDocument, Types } from "mongoose";
+import { HydratedDocument } from "mongoose";
 
 export type TProjectSEO = {
     metaTitle: string,
@@ -15,6 +15,5 @@ export type TProject = {
     seo: TProjectSEO
 };
 
-export type TProjectWithID = TProject & { _id: Types.ObjectId }
 
 export type TProjectDocument = HydratedDocument<TProject>

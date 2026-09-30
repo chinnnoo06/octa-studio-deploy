@@ -5,7 +5,6 @@ export type TUser = {
     password: string
 };
 
-export type TUserWithID = TUser & { _id: Types.ObjectId }
 
 export type TUserPayload = {
     id: Types.ObjectId

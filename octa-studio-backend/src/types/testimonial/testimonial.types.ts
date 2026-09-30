@@ -1,4 +1,4 @@
-import { HydratedDocument, Types } from "mongoose";
+import { HydratedDocument } from "mongoose";
 
 export type TTestimonial = {
     quote: string,
@@ -8,6 +8,5 @@ export type TTestimonial = {
     image: string
 }
 
-export type TTestimonialWithID = TTestimonial & { _id: Types.ObjectId }
 
 export type TTestimonialDocument = HydratedDocument<TTestimonial>

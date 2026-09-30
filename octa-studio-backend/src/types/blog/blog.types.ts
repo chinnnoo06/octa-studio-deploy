@@ -1,4 +1,4 @@
-import { HydratedDocument, Types } from "mongoose";
+import { HydratedDocument } from "mongoose";
 
 export enum BlogCategory {
     STAND_DESIGN = 'Diseño de Stands',
@@ -21,19 +21,11 @@ export type TBlog = {
     title: string,
     excerpt: string,
     category: BlogCategory,
-    /** Minutos de lectura estimados. */
     readingTime: number,
-    /** Nombre de archivo de la imagen destacada, en uploads/blogs. */
     image: string,
-    /**
-     * Cuerpo del articulo en HTML, tal como lo genera el editor (TinyMCE) y
-     * ya saneado por el backend. Las imagenes que lleve dentro apuntan a
-     * rutas relativas /files/blogs/content/<archivo>.
-     */
     content: string,
     seo: TBlogSEO
 }
 
-export type TBlogWithID = TBlog & { _id: Types.ObjectId }
 
 export type TBlogDocument = HydratedDocument<TBlog>
