@@ -3,8 +3,8 @@ import path from "path";
 
 import { blogRepository } from "../repositories/blog.repository";
 import { TMulterFiles } from "../types/multer/multer.types";
-import { TBlogDto, TGetBlogsParams } from "../types/blog/blog.dtos";
-import { TBlogDocument } from "../types/blog/blog.types";
+import { TBlogDto } from "../types/blog/blog.dtos";
+import { BlogCategory, TBlogDocument } from "../types/blog/blog.types";
 import { deleteAllUploadedFiles } from "../utils/deleteFiles";
 import { HttpError } from "../utils/error";
 import { buildSlug } from "../utils/slug";
@@ -34,7 +34,7 @@ const deleteContentImages = (names: string[]) => deleteFromDisk(contentImagesDir
 
 export const BlogService = {
 
-    async getBlogs({ page, category }: TGetBlogsParams) {
+    async getBlogs(page: number, category?: BlogCategory) {
         const filter = category ? { category } : {}
 
         const result = await blogRepository.findPaginated(page, BLOGS_PER_PAGE, filter)

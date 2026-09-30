@@ -111,7 +111,7 @@ export class BlogController {
         const category = req.query.category
 
         try {
-            const { blogs, pagination } = await BlogService.getBlogs({ page, category })
+            const { blogs, pagination } = await BlogService.getBlogs(page, category)
 
             return res.status(200).json({
                 status: "success",
